@@ -13,28 +13,26 @@
 # n = 16
 # decrypted char = A + n therefore A + 16 = P
 
-
+import sys
 
 def main():
     key = """true wisdom comes to each of us when we realise how little we understand about life ourselves and the world around us"""
 
     alphabet = ["a","b","c","d","e","f","g","h","i","j","k","l","m","n","o","p","q","r","s","t","u","v","w","x","y","z"]
-    
-    txt = input("type in the sentence that you want to encrypt:\n")
-   
-    #removing spaces
-    txt = txt.replace(" ","")
     key = key.replace(" ","")
-
-
-    #producing the encrypted text
-    encrypt(txt,key,alphabet)
     
-    #decrypting text
-    enc = input("dycrypt: ")
-    decrypt(enc, key,alphabet)
-
-
+    if(len(sys.argv) == 1):
+        print("There needs to be an inline command -e for encrypt or -d to decrypt")
+    elif(sys.argv[1] == "-e"):
+        txt = input("type in the sentence that you want to encrypt:\n")
+        #removing spaces
+        txt = txt.replace(" ","")
+        #producing the encrypted text
+        encrypt(txt,key,alphabet)
+    elif(sys.argv[1] == "-d"):
+        #decrypting text
+        enc = input("Type in the sentence you want to decrypt:\n ")
+        decrypt(enc, key,alphabet)
 def encrypt(text,key, alph=[]):
     #storing the distance of plain char from A 
     position = 0
