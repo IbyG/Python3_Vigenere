@@ -19,18 +19,18 @@ def main():
     key = """true wisdom comes to each of us when we realise how little we understand about life ourselves and the world around us"""
 
     alphabet = ["a","b","c","d","e","f","g","h","i","j","k","l","m","n","o","p","q","r","s","t","u","v","w","x","y","z"]
-    key = key.replace(" ","")
+    key = key.replace(" ","".lower())
    
    #if there are no args given
     if(len(sys.argv) == 1):
         print("There needs to be an inline command -e for encrypt or -d to decrypt")
     elif(sys.argv[1] == "-e"):
-        txt = input("type in the sentence that you want to encrypt:\n")
+        txt = input("type in the sentence that you want to encrypt:\n").lower()
         #producing the encrypted text
         encrypt(txt,key,alphabet)
     elif(sys.argv[1] == "-d"):
         #decrypting text
-        enc = input("Type in the sentence you want to decrypt:\n")
+        enc = input("Type in the sentence you want to decrypt:\n").lower()
         decrypt(enc, key,alphabet)
 def encrypt(text,key, alph=[]):
     #storing the distance of plain char from A 
