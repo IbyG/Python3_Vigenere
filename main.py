@@ -20,13 +20,14 @@ def main():
 
     alphabet = ["a","b","c","d","e","f","g","h","i","j","k","l","m","n","o","p","q","r","s","t","u","v","w","x","y","z"]
     key = key.replace(" ","")
-    
+   
+   #if there are no args given
     if(len(sys.argv) == 1):
         print("There needs to be an inline command -e for encrypt or -d to decrypt")
     elif(sys.argv[1] == "-e"):
         txt = input("type in the sentence that you want to encrypt:\n")
         #removing spaces
-        txt = txt.replace(" ","")
+        #txt = txt.replace(" ","")
         #producing the encrypted text
         encrypt(txt,key,alphabet)
     elif(sys.argv[1] == "-d"):
@@ -43,32 +44,36 @@ def encrypt(text,key, alph=[]):
     if(True):
             #looping through plain char
             for i in range(len(text)):
-                    
-                #finding the distance between a and plain char
-                for n in range(len(alph)):
-                    if(text[i] == alph[n]):
+                #making sure that the encryption only happens to letters
+                if(text[i] != " "):
+                    #finding the distance between a and plain char
+                    for n in range(len(alph)):
+                        if(text[i] == alph[n]):
                             position = n
 
-                #getting key char and adding position to it
-                #to get encrypted char
-                for n in range(len(alph)):
-                    if(key[keypos] == alph[n]):
-                        #print("n before position: ", n);
-                        #this is the key char position + distance between A to plain char
-                        n += position
-                        #print("this is n: ", n)
-                        #if reaching out of range in the alphabet, reset to the beginning
-                        if(n >= 26):
-                            n = n - 26
-                            encryptText = encryptText + alph[n]
-                        else:
-                            encryptText = encryptText + alph[n]
+                    #getting key char and adding position to it
+                    #to get encrypted char
+                    for n in range(len(alph)):
+                        if(key[keypos] == alph[n]):
+                            #print("n before position: ", n);
+                            #this is the key char position + distance between A to plain char
+                            n += position
+                            #print("this is n: ", n)
+                            #if reaching out of range in the alphabet, reset to the beginning
+                            if(n >= 26):
+                                n = n - 26
+                                encryptText = encryptText + alph[n]
+                            else:
+                                encryptText = encryptText + alph[n]
     
-                #looping through the key if we reach the end of it
-                if(keypos < len(key)-1):
-                    keypos += 1
+                    #looping through the key if we reach the end of it
+                    if(keypos < len(key)-1):
+                        keypos += 1
+                    else:
+                        keypos = 0
+                #adding space to the text        
                 else:
-                    keypos = 0
+                    encryptText = encryptText + " "
                 
     
     print("The encrypted text: ",encryptText)
