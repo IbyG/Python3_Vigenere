@@ -26,8 +26,6 @@ def main():
         print("There needs to be an inline command -e for encrypt or -d to decrypt")
     elif(sys.argv[1] == "-e"):
         txt = input("type in the sentence that you want to encrypt:\n")
-        #removing spaces
-        #txt = txt.replace(" ","")
         #producing the encrypted text
         encrypt(txt,key,alphabet)
     elif(sys.argv[1] == "-d"):
