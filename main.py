@@ -32,7 +32,7 @@ def main():
         encrypt(txt,key,alphabet)
     elif(sys.argv[1] == "-d"):
         #decrypting text
-        enc = input("Type in the sentence you want to decrypt:\n ")
+        enc = input("Type in the sentence you want to decrypt:\n")
         decrypt(enc, key,alphabet)
 def encrypt(text,key, alph=[]):
     #storing the distance of plain char from A 
@@ -88,28 +88,32 @@ def decrypt(etext, key, alph=[]):
 
     #loop through encrypted text
     for i in range(len(etext)):
-        #looping through alphabet
-        for n in range(len(alph)):
-            #getting the key position and alphabet position 
-            if(key[keypos] == alph[n]):
-                #looping from key position to encrypted letter position
-                while(alph[n] != etext[i]):
-                    #print(alph[n], etext[i])
-                    distance += 1
-                    n +=1
-                    #when reaching the end of the alphabet
-                    if(n == 26):
-                        n = 0
-                #adding decrypted letter to string
-                decryptedText += alph[distance];
-                #resetting distance
-                distance = 0
+        if(etext[i] != " "):
+            #looping through alphabet
+            for n in range(len(alph)):
+                #getting the key position and alphabet position 
+                if(key[keypos] == alph[n]):
+                    #looping from key position to encrypted letter position
+                    while(alph[n] != etext[i]):
+                        #print(alph[n], etext[i])
+                        distance += 1
+                        n +=1
+                        #when reaching the end of the alphabet
+                        if(n == 26):
+                            n = 0
+                    #adding decrypted letter to string
+                    decryptedText += alph[distance];
+                    #resetting distance
+                    distance = 0
              
-        #looping through the key if we reach the end of it
-        if(keypos < len(key)-1):
-            keypos += 1
+            #looping through the key if we reach the end of it
+            if(keypos < len(key)-1):
+                keypos += 1
+            else:
+                keypos = 0
         else:
-            keypos = 0
+            decryptedText = decryptedText + " "
+
     print("Decrypted Text: ", decryptedText)
     
 
