@@ -38,7 +38,13 @@ def options():
         #getting the next value
         x += 1
         #retrieving the value
-        choice = userOptions[x]
+        
+
+        if(int(userOptions[x]) >= linesCount()):
+            print("the number you have selected has no line in text file, going to default")
+            choice = 1
+        else:
+            choice = userOptions[x]
     else:
         choice = 1
 
@@ -144,6 +150,13 @@ def decrypt(etext, key, alph=[]):
             decryptedText = decryptedText + " "
 
     print("Decrypted Text: ", decryptedText)
+
+def linesCount():
+    cnt = 1
+    with open('keys.txt') as fp:
+        for line in fp:
+            cnt += 1
+    return(cnt)
     
 
 def keys(choice):
