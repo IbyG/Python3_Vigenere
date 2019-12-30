@@ -16,7 +16,9 @@
 import sys
 
 def main():
-    key = """true wisdom comes to each of us when we realise how little we understand about life ourselves and the world around us"""
+    #key = """true wisdom comes to each of us when we realise how little we understand about life ourselves and the world around us"""
+    
+    key = keys(1)
 
     alphabet = ["a","b","c","d","e","f","g","h","i","j","k","l","m","n","o","p","q","r","s","t","u","v","w","x","y","z"]
     key = key.replace(" ","".lower())
@@ -32,6 +34,8 @@ def main():
         #decrypting text
         enc = input("Type in the sentence you want to decrypt:\n").lower()
         decrypt(enc, key,alphabet)
+    else:
+        print("This option does not exist")
 def encrypt(text,key, alph=[]):
     #storing the distance of plain char from A 
     position = 0
@@ -114,5 +118,20 @@ def decrypt(etext, key, alph=[]):
 
     print("Decrypted Text: ", decryptedText)
     
+
+def keys(choice):
+    filepath = 'keys.txt'
+    cnt = 1
+    #opening file
+    with open(filepath) as fp:
+        #reading each line
+        for line in fp:
+            #returning the specific key that the user choice
+            if(cnt == choice):
+                return(line.strip())
+            cnt += 1
+            
+        
+
 
 main()
