@@ -44,10 +44,13 @@ def options():
         x += 1
         #retrieving the value
         choice = userOptions[x]
-        #useing the value to get the key from the textfile
-        key = keys(int(choice))
-        #removing undeccasery spaces and case's
-        key = key.replace(" ","".lower())
+    else:
+        choice = 1
+
+    #using the value to get the key from the textfile
+    key = keys(int(choice))
+    #removing undeccasery spaces and case's
+    key = key.replace(" ","".lower())
 
     if("-e" in userOptions):
         txt = input("type in the sentence that you want to encrypt:\n").lower()
