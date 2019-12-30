@@ -18,24 +18,53 @@ import sys
 def main():
     #key = """true wisdom comes to each of us when we realise how little we understand about life ourselves and the world around us"""
     
-    key = keys(1)
+    #key = keys(1)
 
-    alphabet = ["a","b","c","d","e","f","g","h","i","j","k","l","m","n","o","p","q","r","s","t","u","v","w","x","y","z"]
-    key = key.replace(" ","".lower())
-   
+    options()
+
    #if there are no args given
+  
+#the command line arguments options
+def options():
+    
+    alphabet = ["a","b","c","d","e","f","g","h","i","j","k","l","m","n","o","p","q","r","s","t","u","v","w","x","y","z"]
+   
     if(len(sys.argv) == 1):
-        print("There needs to be an inline command -e for encrypt or -d to decrypt")
-    elif(sys.argv[1] == "-e"):
+        print("There needs to be an inline command\n -e for encrypt\n -d to decrypt\n -k followed by a number to select a specific key")
+
+    userOptions = []
+
+    for options in sys.argv[1:]:
+        userOptions.append(options)
+        
+    if("-k" in userOptions):
+        #getting position
+        x = userOptions.index('-k')
+        #getting the next value
+        x += 1
+        #retrieving the value
+        choice = userOptions[x]
+        #useing the value to get the key from the textfile
+        key = keys(int(choice))
+        #removing undeccasery spaces and case's
+        key = key.replace(" ","".lower())
+
+    if("-e" in userOptions):
         txt = input("type in the sentence that you want to encrypt:\n").lower()
         #producing the encrypted text
         encrypt(txt,key,alphabet)
-    elif(sys.argv[1] == "-d"):
+
+    if("-d" in userOptions):
         #decrypting text
         enc = input("Type in the sentence you want to decrypt:\n").lower()
         decrypt(enc, key,alphabet)
-    else:
-        print("This option does not exist")
+    
+        
+
+
+    
+
+
 def encrypt(text,key, alph=[]):
     #storing the distance of plain char from A 
     position = 0
