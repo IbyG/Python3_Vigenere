@@ -16,19 +16,14 @@
 import sys
 
 def main():
-    #key = """true wisdom comes to each of us when we realise how little we understand about life ourselves and the world around us"""
-    
-    #key = keys(1)
-
     options()
-
-   #if there are no args given
   
 #the command line arguments options
 def options():
     
     alphabet = ["a","b","c","d","e","f","g","h","i","j","k","l","m","n","o","p","q","r","s","t","u","v","w","x","y","z"]
    
+   #if there are no option given
     if(len(sys.argv) == 1):
         print("There needs to be an inline command\n -e for encrypt\n -d to decrypt\n -k followed by a number to select a specific key")
 
@@ -44,10 +39,13 @@ def options():
         x += 1
         #retrieving the value
         choice = userOptions[x]
-        #useing the value to get the key from the textfile
-        key = keys(int(choice))
-        #removing undeccasery spaces and case's
-        key = key.replace(" ","".lower())
+    else:
+        choice = 1
+
+    #using the value to get the key from the textfile
+    key = keys(int(choice))
+    #removing undeccasery spaces and case's
+    key = key.replace(" ","".lower())
 
     if("-e" in userOptions):
         txt = input("type in the sentence that you want to encrypt:\n").lower()
