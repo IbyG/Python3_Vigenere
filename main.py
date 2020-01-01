@@ -15,6 +15,9 @@
 
 import sys
 
+#this is the latest output from either encyrpting or decrypting 
+latestText = " "
+
 def main():
     options()
   
@@ -71,14 +74,34 @@ def options():
 
         #encrypting the text
         encrypt(txt,key,alphabet)
-    
-        
+
+    if("-id" in userOptions):
+        #getting psoition of the file name
+        x = userOptions.index('-id')
+        x += 1
+        #storing the text from the file into txt
+        txt = ReadFile(userOptions[x])
+
+        #decrypt the text
+        decrypt(txt,key,alphabet)
+
+    if("-o" in userOptions):
+        #getting position of the file name
+        x = userOptions.index('-o')
+        x += 1
+        if(latestText != " "):
+            SaveToFile(latestText,userOptions[x])
+        else:
+            print("Nothing to save into the file\n Aborting process")
 
 
     
 
 
 def encrypt(text,key, alph=[]):
+    #so i can store the final result
+    global latestText
+
     #storing the distance of plain char from A 
     position = 0
     encryptText = ""
@@ -119,13 +142,17 @@ def encrypt(text,key, alph=[]):
                 else:
                     encryptText = encryptText + " "
                 
-    
+    latestText = encryptText
     print("The encrypted text: ",encryptText)
 
 #etext - encrypted text
 #key - the key to encrypt and decrypt
 #alph -the english alphabet
 def decrypt(etext, key, alph=[]):
+    #so i can store the final result 
+    global latestText
+
+    #storing the distance of plain char from A
     keypos = 0 #storing the key position 
     decryptedText = "" #storing the combined text 
     distance = 0 #the distance between key char and encrypted char
@@ -158,6 +185,7 @@ def decrypt(etext, key, alph=[]):
         else:
             decryptedText = decryptedText + " "
 
+    latestText = decryptedText 
     print("Decrypted Text: ", decryptedText)
 
 #counts how many lines are in keys.txt and returns them
@@ -191,10 +219,17 @@ def ReadFile(filename):
         #read each line
         for line in fp:
             file_text += line
-    print("This is the content that will be encrypted: ",file_text)
+    print("This is the content: ",file_text)
     #return the content
     return(file_text)
 
+#saving the encrypted text to a specified text file
+def SaveToFile(content, filename):
+    #opening file
+    savefile = open(filename, 'w')
 
+    #saving the encrypted text to file
+    savefile.write(content)
+    savefile.close()
 
 main()
