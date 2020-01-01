@@ -37,13 +37,12 @@ def options():
         x = userOptions.index('-k')
         #getting the next value
         x += 1
-        #retrieving the value
         
-
+        #if the choice is greater than the keys.txt line count
         if(int(userOptions[x]) >= linesCount()):
             print("the number you have selected has no line in text file, going to default")
             choice = 1
-        else:
+        else: #storing the choice to then get the key
             choice = userOptions[x]
     else:
         choice = 1
@@ -62,6 +61,16 @@ def options():
         #decrypting text
         enc = input("Type in the sentence you want to decrypt:\n").lower()
         decrypt(enc, key,alphabet)
+
+    if("-i" in userOptions):
+        #getting position of the file name
+        x = userOptions.index('-i')
+        x += 1
+        #storing the text from the file into txt
+        txt = ReadFile(userOptions[x])
+
+        #encrypting the text
+        encrypt(txt,key,alphabet)
     
         
 
@@ -151,6 +160,7 @@ def decrypt(etext, key, alph=[]):
 
     print("Decrypted Text: ", decryptedText)
 
+#counts how many lines are in keys.txt and returns them
 def linesCount():
     cnt = 1
     with open('keys.txt') as fp:
@@ -158,7 +168,7 @@ def linesCount():
             cnt += 1
     return(cnt)
     
-
+#reads the keys file and returns a specific key string based on choice
 def keys(choice):
     filepath = 'keys.txt'
     cnt = 1
@@ -172,6 +182,19 @@ def keys(choice):
             cnt += 1
             
         
+#function to read and return a string of the file contents
+def ReadFile(filename):
+    #the text in the file
+    file_text = ""
+
+    with open(filename) as fp:
+        #read each line
+        for line in fp:
+            file_text += line
+    print("This is the content that will be encrypted: ",file_text)
+    #return the content
+    return(file_text)
+
 
 
 main()
