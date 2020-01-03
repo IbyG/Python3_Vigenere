@@ -6,7 +6,7 @@ on terminal: 'python3 main.py'
 On IDE: just hit 'run' 
 
 #Terminal Examples
-'''coffeescript
+'''
   python3 main.py -e
     OR
   python3 main.py -d
