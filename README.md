@@ -1,7 +1,7 @@
 # Vigenere
 Encrypting and decrypting text using the vigenere cipher in python 3
 
-#To Run:
+###To Run:
 on terminal: 'python3 main.py'
 On IDE: just hit 'run' 
 
