@@ -15,7 +15,7 @@ On IDE: just hit 'run'
   python3 main.oy -e -d 
 ```
 
-#What I Learned
+## What I Learned
 * Understanding command line commands
 * Implementing the encryption and decryption algorithm within python 
 * Implements functionalities: encrypt,decrypt, select encryption key, read from file and encrypt/decrypt the contents, write the encrypted/decrypted contents to a file
