@@ -6,7 +6,7 @@ on terminal: 'python3 main.py'
 
 On IDE: just hit 'run' 
 
-# Terminal Examples
+## Terminal Examples
 ```
   python3 main.py -e
     OR
